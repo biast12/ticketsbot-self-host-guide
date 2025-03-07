@@ -112,10 +112,10 @@ services:
       WORKER_MODE: INTERACTIONS
 
       DASHBOARD_URL: ${DASHBOARD_URL:-http://localhost:5000}
-      FRONTPAGE_URL: ${LANDING_PAGE_URL:-https://ticketsbot.net}
-      VOTE_URL: ${VOTE_URL:-https://vote.ticketsbot.net}
+      FRONTPAGE_URL: ${FRONTPAGE_URL:-https://ticketsbot.cloud}
+      VOTE_URL: ${VOTE_URL:-https://vote.ticketsbot.cloud}
       POWEREDBY: ${POWERED_BY:-github.com/ticketsbot}
-      ICON_URL: ${ICON_URL:-https://ticketsbot.net/assets/icon.png}
+      ICON_URL: ${ICON_URL:-https://ticketsbot.cloud/assets/icon.png}
 
       WORKER_PUBLIC_TOKEN: ${DISCORD_BOT_TOKEN}
       WORKER_PUBLIC_ID: ${DISCORD_BOT_CLIENT_ID}
@@ -164,6 +164,9 @@ services:
       #   condition: service_healthy
     networks:
       - app-network
+    env_file:
+      - .env
+      - .env-branding
 
   worker-gateway:
     image: ${WORKER_IMAGE:-ghcr.io/ticketsbot-cloud/worker:4e0ecbd29ce2a26ba13378905411592713d1ca8c}
@@ -176,10 +179,10 @@ services:
       WORKER_MODE: GATEWAY
 
       DASHBOARD_URL: ${DASHBOARD_URL:-http://localhost:5000}
-      FRONTPAGE_URL: ${LANDING_PAGE_URL:-https://ticketsbot.net}
-      VOTE_URL: ${VOTE_URL:-https://vote.ticketsbot.net}
+      FRONTPAGE_URL: ${FRONTPAGE_URL:-https://ticketsbot.cloud}
+      VOTE_URL: ${VOTE_URL:-https://vote.ticketsbot.cloud}
       POWEREDBY: ${POWERED_BY:-github.com/ticketsbot}
-      ICON_URL: ${ICON_URL:-https://ticketsbot.net/assets/icon.png}
+      ICON_URL: ${ICON_URL:-https://ticketsbot.cloud/assets/icon.png}
 
       WORKER_PUBLIC_TOKEN: ${DISCORD_BOT_TOKEN}
       WORKER_PUBLIC_ID: ${DISCORD_BOT_CLIENT_ID}
@@ -226,6 +229,9 @@ services:
         condition: service_healthy
     networks:
       - app-network
+    env_file:
+      - .env
+      - .env-branding
 
   http-gateway:
     image: ${HTTP_GATEWAY_IMAGE:-ghcr.io/ticketsbot/http-gateway:b0748cc2e964eb1fcb658565844a50a6182489cf}
@@ -320,7 +326,7 @@ services:
     environment:
       SERVER_ADDR: 0.0.0.0:8081
       BASE_URL: ${DASHBOARD_URL:-http://localhost:5000}
-      MAIN_SITE: ${LANDING_PAGE_URL:-https://ticketsbot.net} # Home/Landing (used for /premium)
+      MAIN_SITE: ${FRONTPAGE_URL:-https://ticketsbot.cloud} # Home/Landing (used for /premium)
       DATABASE_URI: 'postgres://postgres:${DATABASE_PASSWORD:-null}@postgres/ticketsbot'
       REDIS_HOST: ${REDIS_HOST:-redis}
       REDIS_PASSWORD: ${REDIS_PASSWORD:-null}
@@ -330,7 +336,7 @@ services:
       RATELIMIT_MAX: 10
       RealIpHeaders: ${REAL_IP_HEADERS:-X-Forwarded-For}
       TRUSTED_PROXIES: ${TRUSTED_PROXIES:-127.0.0.1,172.21.0.1}
-      JWT_SECRET: ${JWT_SECRET}
+      JWT_SECRET: ${JWT_SECRET:-}
       OAUTH_ID: ${DISCORD_BOT_CLIENT_ID}
       OAUTH_SECRET: '${DISCORD_BOT_OAUTH_SECRET}'
       OAUTH_REDIRECT_URI: '${DASHBOARD_URL:-http://localhost:5000}/callback'
@@ -359,6 +365,9 @@ services:
         condition: service_healthy
     networks:
       - app-network
+    env_file:
+      - .env
+      - .env-branding
 
   dashboard:
     build:
@@ -369,11 +378,21 @@ services:
         API_URL: ${API_URL:-http://localhost:8082}
         WS_URL: ${API_URL:-http://localhost:8082}
         COMMIT_HASH: ${DASHBOARD_HASH:-27b2c0e8c63dc66ed9c715823dcfd2b57c1a4beb}
+        INVITE_URL: ${BOT_INVITE_URL:-}
+        DOCS_URL: ${DOCS_URL:-}
+        TITLE: ${DASHBOARD_TITLE:-}
+        DESCRIPTION: ${DASHBOARD_DESCRIPTION:-}
+        FAVICON: ${DASHBOARD_FAVICON:-}
+        FAVICON_TYPE: ${DASHBOARD_FAVICON_TYPE:-}
+        WHITELABEL_DISABLED: ${DASHBOARD_FAVICON_TYPE:-}
         CACHEBUST: "this is randeom" # (OPTIONAL) Change this whenever you update the dashboard repository
     ports:
       - '5000:5000'
     networks:
       - app-network
+    env_file:
+      - .env
+      - .env-branding
 
   logarchiver:
     image: ${LOGARCHIVER_IMAGE:-ghcr.io/ticketsbot/logarchiver:0cfab8ec82cfaa88af9e6fabe4dd9a407f7537dd}

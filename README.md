@@ -84,7 +84,7 @@ For frequently asked questions, please refer to the [FAQ](./wiki/faq.md) documen
 - [#2 What are the system requirements?](./wiki/faq.md#2-what-are-the-system-requirements)
 - [#3 Can I turn off the logging?](./wiki/faq.md#3-can-i-turn-off-the-logging)
 - [#4 How do I update the bot?](./wiki/faq.md#4-how-do-i-update-the-bot)
-- [#5 How do I get rid of the `ticketsbot.net` branding?](./wiki/faq.md#5-how-do-i-get-rid-of-the-ticketsbotnet-branding)
+- [#5 How do I get rid of the `ticketsbot.cloud` branding?](./wiki/faq.md#5-how-do-i-get-rid-of-the-ticketsbotnet-branding)
 - [#6 I want anyone to be able to use the dashboard, how do I do that?](./wiki/faq.md#6-i-want-anyone-to-be-able-to-use-the-dashboard-how-do-i-do-that)
 - [#7 This requires S3, can I host this without S3? (NOT recommended)](./wiki/faq.md#7-this-requires-s3-can-i-host-this-without-s3-not-recommended)
 - [#8 How do I activate premium features?](./wiki/faq.md#8-how-do-i-activate-premium-features)

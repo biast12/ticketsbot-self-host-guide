@@ -32,7 +32,7 @@ If you instead look in the [TicketsBot v2 Packages](https://github.com/orgs/Tick
 
 If neither of those have newer images, you will have to fork the respective repositories, compile and update the `docker-compose.yaml` or `.env` to those compiled images.
 
-## 5. How do I get rid of the `ticketsbot.net` branding?
+## 5. How do I get rid of the `ticketsbot.cloud` branding?
 
 This shouldn't be a problem now as this guide has been updated to use a newer image that already allows you to change the branding.
 
