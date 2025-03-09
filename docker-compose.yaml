@@ -384,7 +384,7 @@ services:
         DESCRIPTION: ${DASHBOARD_DESCRIPTION:-}
         FAVICON: ${DASHBOARD_FAVICON:-}
         FAVICON_TYPE: ${DASHBOARD_FAVICON_TYPE:-}
-        WHITELABEL_DISABLED: ${DASHBOARD_FAVICON_TYPE:-}
+        WHITELABEL_DISABLED: ${DASHBOARD_WHITELABEL_DISABLED:-}
         CACHEBUST: "this is randeom" # (OPTIONAL) Change this whenever you update the dashboard repository
     ports:
       - '5000:5000'

@@ -1,4 +1,4 @@
 /pg*data
 /redisdata
 /kafkadata
-.env
+.env*
